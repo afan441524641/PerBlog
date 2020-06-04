@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh">
+
+{# 导入head #}
+{% include 'blog_html/headinfo.html' %}
+
+<section class="section" id="nat" v-cloak>
+    <div class="container">
+        <div class="columns">
+            <div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen">
+                <div class="card widget">
+                    <div class="card-content">
+                        {% if  request.path == '/articles/tags/' %}
+                            <div class="menu">
+                                <h3 class="menu-label">标签</h3>
+                                <div class="field is-grouped is-grouped-multiline">
+                                    <div v-for="tag in tags_data" class="control">
+                                        <a class="tags has-addons" :href="'/articles/cate_tags/tags/'+tag.id+'/page/1/'"
+                                           v-cloak>
+                                            <span class="tag">[[ tag.name ]]</span>
+                                            <span class="tag is-grey-lightest">[[ tag.total_num ]]</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="menu">
+                                <h3 class="menu-label">分类</h3>
+                                <ul class="menu-list">
+                                    <li v-for="cate in category_data" v-cloak>
+                                        <a class="level is-mobile is-marginless" :href="'/articles/cate_tags/category/'+cate.id+'/page/1/'">
+                                            <span class="level-start">
+                                                <span class="level-item" v-cloak>[[ cate.name ]]</span>
+                                            </span>
+                                            <span class="level-end">
+                                                <span class="level-item tag" v-cloak>[[ cate.total_num ]]</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <!-- 个人介绍页-->
+            <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen order-1 is-sticky">
+                {% include 'blog_html/per_detail.html' %}
+                <div class="column-right-shadow is-hidden-widescreen"></div>
+            </div>
+            <!-- 右边栏-->
+            <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3">
+                {% include 'blog_html/right_site.html' %}
+            </div>
+        </div>
+    </div>
+</section>
+{% include  'blog_html/footer.html' %}
+{#<script src="/static/js/insight.js" defer></script>#}
+</body>
+</html>

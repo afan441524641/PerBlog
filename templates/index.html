@@ -1,0 +1,43 @@
+{# 参考文献: https://docs.djangoproject.com/en/dev/ref/templates/builtins/#static #}
+
+{% load blog_tags %}
+{% get_site_config as SITE_CONFIGS %}
+<!doctype html>
+<html lang="zh">
+
+{# 导入head #}
+{% include 'blog_html/headinfo.html' %}
+
+{#            {% block content %}#}
+{#            {% endblock %}#}
+<section class="section" id="nat" v-cloak>
+    <div class="container">
+        <div class="columns">
+{#            {% block content %}#}
+{#            {% endblock %}#}
+            <!-- 文章-->
+            {% include 'blog_html/article.html' %}
+            <!-- 个人介绍页-->
+            <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky">
+                {% include 'blog_html/per_detail.html' %}
+                <div class="column-right-shadow is-hidden-widescreen"></div>
+            </div>
+            <!-- 右边栏-->
+            <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3">
+                {% include 'blog_html/right_site.html' %}
+            </div>
+        </div>
+    </div>
+</section>
+{# 引用获取文章数据的js文件,发送ajax请求 #}
+{#<script type="text/javascript" src="/static/js/article-get.js"></script>#}
+<!--页脚
+利用django模板的include组件将常用的页面内容如导航条，页尾信息等组件保存在单独的文件中
+然后在需要使用的地方，文件的任意位置按如下语法导入即可。
+多个页面都有同样的代码,直接用此语法可减少代码的重复性
+-->
+{% include  'blog_html/footer.html' %}
+
+</body>
+
+</html>

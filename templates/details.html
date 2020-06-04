@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh">
+
+{# 引头 #}
+{% include 'blog_html/headinfo.html' %}
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen">
+                {# 文章标签 #}
+                <div class="card">
+                    <div class="card-image">
+                        <span class="image is-7by3">
+                            <img class="thumbnail" src="{{ img_url }}" alt="{{ title }}">
+                        </span>
+                    </div>
+                    <article class="card-content article" role="article">
+                        <div class="article-meta size-small is-uppercase level is-mobile">
+                            <div class="level-left">
+                                <i class="far fa-calendar-plus"> </i>{{ create_time }}  
+                                <a class="commentCountImg" href="#comment-container">
+                                    <i class="far fa-comment-dots"></i> 
+                                    <span class="commentCount">99+</span>  
+                                </a>
+                                <span class="level-item">
+                                    <i class="far fa-clock"> </i>8 分钟  
+                                    <i class="fas fa-pencil-alt"> </i>1.2 k
+                                </span>
+                                <span class="level-item" id="busuanzi_container_page_pv">
+                                    <i class="far fa-eye"></i>&nbsp;&nbsp;
+                                    <span id="busuanzi_value_page_pv">0</span>次访问
+                                </span>
+                            </div>
+                        </div>
+                        <h1 class="title is-3 is-size-4-mobile">{{ title }}</h1>
+                        {# 文章内容 #}
+                        <div class="content">
+                            {{ content | safe }}
+                        </div>
+                        <ul class="post-copyright">
+                            <li><strong>本文标题：</strong><a href="{% url 'details' id %}">{{ title }}</a>
+                            </li>
+                            <li><strong>本文作者：</strong><a href="http://yoursite.com">Admin</a></li>
+                            <li><strong>本文链接：</strong><a href="{% url 'details' id %}">
+                                {{ request.get_host }}{% url 'details' id %}</a>
+                            </li>
+                            <li><strong>版权声明：</strong><span>本博客所有文章除特别声明外，均采用 <a
+                                    href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+                                    rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</span>
+                            </li>
+                        </ul>
+                        <link rel="stylesheet"
+                              href="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                        <div class="social-share"></div>
+                        <script src="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                    </article>
+                </div>
+                {# 评论 #}
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="title is-5">评论(暂不开放)</h3>
+                        <div id="comment-container"></div>
+                        <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/gitalk/1.6.0/gitalk.css">
+{#                        <script>#}
+{#                            $.getScript('/static/js/gitalk.min.js', function () {#}
+{#                                var gitalk = new Gitalk({#}
+{#                                    language: 'zh-CN',#}
+{#                                    id: '7182cda264f36202c5a39e155d9ef853',#}
+{#                                    repo: 'blog_comment',#}
+{#                                    owner: 'removeif',#}
+{#                                    clientID: '46a9f3481b46ea0129d8',#}
+{#                                    clientSecret: '79c7c9cb847e141757d7864453bcbf89f0655b24',#}
+{#                                    admin: ["removeif"],#}
+{#                                    createIssueManually: true,#}
+{#                                    distractionFreeMode: false,#}
+{#                                    perPage: 10,#}
+{#                                    pagerDirection: 'last',#}
+{#                                    enableHotKey: true,#}
+{#                                    isLocked: false#}
+{#                                });#}
+{#                                gitalk.render('comment-container')#}
+{#                            });#}
+{#                        </script>#}
+                    </div>
+                </div>
+            </div>
+            {#  左边栏#}
+            <div id="nat" class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"
+                 v-cloak>
+                <div class="card widget toc-scroll" id="toc">
+                    <div class="card-content">
+                        <div class="menu">
+                            <h3 class="menu-label">目录</h3>
+                            <ul class="menu-list toc">
+                                {{ menu_list|safe }}
+                                {#                                {% for menu in menu_list %}#}
+                                {#                                    <li>#}
+                                {#                                        <a class="is-flex toc-item" href="#{{ menu }}">#}
+                                {#                                            <span>{{ menu }}</span>#}
+                                {#                                        </a>#}
+                                {#                                    </li>#}
+                                {#                                {% endfor %}#}
+                            </ul>
+                        </div>
+                    </div>
+                    {# 备用l#}
+                </div>
+                {#  引入个人介绍页#}
+                {% include 'blog_html/per_detail.html' %}
+                {#  引入右边栏#}
+                {% include 'blog_html/right_site.html' %}
+            </div>
+        </div>
+    </div>
+</section>
+{# 页脚 底部加载文件 #}
+{% include  'blog_html/footer.html' %}
+<script>
+    {#console.log(article_data);#}
+    let h1_tag = document.querySelectorAll(".content > h1");
+    {# 批量给h1标签置属性 #}
+    for (a = 0; a < h1_tag.length; a++) {
+        h1_tag[a].setAttribute('id', h1_tag[a].innerText);
+    }
+</script>
+{#<script src="/static/js/insight.js" defer></script>#}
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+{% for con in article_list %}
+    <div class="card">
+        <div class="card-image">
+            <a class="image is-7by3" href="{% url 'details' con.id %}">
+                <img class="thumbnail" src="{{ con.img_url }}" alt="{{ con.title }}">
+            </a>
+        </div>
+        <article class="card-content article" role="article">
+            <div class="article-meta size-small is-uppercase level is-mobile">
+                <div class="level-left">
+                    <!-- 发布时间-->
+                    <i class="far fa-calendar-plus"> </i>{{ con.create_time }}  
+                    <!-- 文章链接-->
+                    <a class="commentCountImg" href="/">
+                        <!--  <span class="display-none-class">7182cda264f36202c5a39e155d9ef853</span>-->
+                        <i class="far fa-comment-dots"></i> 
+                        <!-- 评论量-->
+                        <span class="commentCount">99+</span>  
+                    </a>
+                    <span class="level-item">
+                        <i class="far fa-clock"> </i>8 分钟  
+                        <!--  阅读量-->
+                        <i class="fas fa-pencil-alt"> </i>1.2 k
+                    </span>
+                </div>
+            </div>
+            <!-- 标题-->
+            <h1 class="title is-3 is-size-4-mobile">
+                <a class="link-muted" href="{% url 'details' con.id %}">{{ con.title }}</a>
+            </h1>
+            <!-- 文章内容-->
+            <div class="content">
+                {{ con.content | safe | truncatewords_html:'5' }}
+                {#                <p>不蒜子统计官网：#}
+                {#                    <a href="http://busuanzi.ibruce.info/">http://busuanzi.ibruce.info/</a>#}
+                {#                </p>#}
+                {#                <p>详细使用教程：#}
+                {#                    <a href="http://ibruce.info/2015/04/04/busuanzi/">http://ibruce.info/2015/04/04/busuanzi/</a>#}
+                {#                </p>#}
+                {#                <p>目前支持的功能：（两行代码，搞定计数；方便、简洁、实用）</p>#}
+                {#                <p>a、显示站点总访问量</p>#}
+                {#                <p>b、显示单页面访问量</p>#}
+            </div>
+            <!-- 标签-->
+            <div class="index-category-tag">
+                <div class="level-item">
+                    <i class="fas fa-folder-open has-text-grey"> </i>
+                    <a class="article-more button is-small link-muted index-categories"
+                       href="{% url 'cate_tags' 'category' con.category.id 1 %}">{{ con.category.name }}</a>
+                    <span> </span>
+                    {#                    <a class="article-more button is-small link-muted index-categories"#}
+                    {#                       href="/">博客统计插件</a>#}
+                </div>
+                <div class="level-item">
+                    <i class="fas fa-tags has-text-grey"> </i>
+                    <a class="article-more button is-small link-muted index-tags"
+                       href="{% url 'cate_tags' 'tags' con.tag.id 1 %}">{{ con.tag.name }}</a>
+                </div>
+                <hr>
+            </div>
+            <!-- 阅读更多 最后修改时间-->
+            <div class="level is-mobile is-flex">
+                <div class="level-start">
+                    <div class="level-item">
+                        <a class="article-more button is-small size-small link-muted"
+                           href="{% url 'details' con.id %}">阅读更多&gt;&gt;</a>
+                    </div>
+                </div>
+                <div class="level-start">
+                    <div class="level-item has-text-grey is-size-7">
+                        <time datetime="2020-03-25T10:07:58.000Z">
+                            <i class="far fa-calendar-check"> 最后修改: </i>{{ con.update_time }}
+                        </time>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+{% endfor %}

@@ -1,0 +1,172 @@
+<div>
+    <div class="recommend-post">
+        <span class="is-size-6 has-text-grey has-mr-7"># 推荐文章</span>
+        <br>
+        <span>  1.
+                                    <a class="is-size-6" href="/static/public/2019/09/19/theme/博客源码分享" target="_blank">博客源码分享</a>
+                                    <br>
+                                </span>
+        <span>  2.
+                                    <a class="is-size-6"
+                                       href="/2019/09/13/theme/%E5%8D%9A%E5%AE%A2%E4%B8%ADgitalk%E6%9C%80%E6%96%B0%E8%AF%84%E8%AE%BA%E7%9A%84%E8%8E%B7%E5%8F%96/"
+                                       target="_blank">博客中gitalk最新评论的获取</a>
+                                    <br>
+                                </span>
+        <span>  3.
+                                    <a class="is-size-6" href="/static/public/2019/08/21/law/中华人民共和国刑事诉讼法"
+                                       target="_blank">中华人民共和国刑事诉讼法</a>
+                                    <br>
+                                </span>
+        <span>  4.
+                                    <a class="is-size-6"
+                                       href="/static/public/2019/11/28/theme/github-Issue-作为博客微型数据库的应用" target="_blank">github Issue 作为博客微型数据库的应用</a>
+                                    <br>
+                                </span>
+        <span>  5.
+                                    <a class="is-size-6" href="/static/public/2019/12/21/theme/不蒜子统计常见问题"
+                                       target="_blank">不蒜子统计常见问题</a>
+                                    <br>
+                                </span>
+    </div>
+</div>
+
+
+{#                        打赏#}
+<div class="card">
+    <div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered"><a class="button is-info donate"><span class="icon is-small"><i
+                class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img
+                src="https://raw.githubusercontent.com/removeif/blog_image/master/img/2019/20190802135456.png"
+                alt="支付宝"></span></a><a class="button is-success donate"><span class="icon is-small"><i
+                class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img
+                src="https://raw.githubusercontent.com/removeif/blog_image/master/img/2019/20190802135550.png"
+                alt="微信"></span></a></div>
+    </div>
+</div>
+
+{# 上一篇下一篇 #}
+<nav class="post-navigation mt-4 level is-mobile">
+    <div class="level-start"><a class="article-nav-prev level level-item link-muted"
+                                href="/static/public/2020/01/21/private/加密文章测试"><i
+            class="level-item fas fa-chevron-left"></i><span class="level-item">加密文章测试</span></a></div>
+    <div class="level-end"><a class="article-nav-next level level-item link-muted"
+                              href="/static/public/2019/11/28/theme/github-Issue-作为博客微型数据库的应用"><span
+            class="level-item">github Issue 作为博客微型数据库的应用</span><i
+            class="level-item fas fa-chevron-right"></i></a></div>
+</nav>
+
+
+<script>moment.locale("zh-CN");</script>
+<script>var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable": true, "exclude": []}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};</script>
+
+
+{# l #}
+<script type="text/javascript" async>
+    $(document).ready(function () { //参考自 https://github.com/ppoffice/hexo-theme-icarus/pull/616/files
+        var observerTopMargin;
+        var scrollObserver;
+        var headerElems = $(".headerlink");
+        var activeTocItem;
+
+        function initIntersectionObserver(docHeight) {
+            observerTopMargin = docHeight;
+            scrollObserver = new IntersectionObserver(scrollCallBack,
+                {
+                    root: null,  // viewpoint
+                    rootMargin: docHeight + "px 0px -80% 0px"  // cover top 30% of viewport to the top of document
+                })
+        }
+
+        function scrollCallBack(entries, observer) {
+            if ($(window).scrollTop() > observerTopMargin * 0.7) {
+                // User somehow scroll to 70% of observerTopMargin (which is inited as 200% document height)
+                // Observer top margin need to extend to cover all the space to the top of the document
+                initIntersectionObserver(observerTopMargin * 2);
+                observer.disconnect();
+                return;
+            }
+            let toActive;
+            if (entries[0].intersectionRatio == 1) {  // enter viewed area
+                let entry = entries.reduce((u, v) => (u.target.toc_id > v.target.toc_id ? u : v));  // get the lowest item
+                toActive = $("#toc-item-" + $(entry.target).attr("href").substr(1));
+            } else {
+                let entry = entries.reduce((u, v) => (u.target.toc_id < v.target.toc_id ? u : v));  // get the highest item
+                let idx = Math.max(entry.target.toc_id - 1, 0);
+                toActive = $("#toc-item-" + $(headerElems[idx]).attr("href").substr(1));
+            }
+            if (activeTocItem) activeTocItem.removeClass("is-current");
+            activeTocItem = toActive;
+            activeTocItem.addClass("is-current");
+        }
+
+        initIntersectionObserver($(document).height() * 2);
+        headerElems.each(function (index, obj) {
+            obj.toc_id = index;
+            scrollObserver.observe(obj);
+        })
+    });
+</script>
+
+
+<li>
+    <a class="level is-mobile is-marginless" href="/static/public/categories/工具教程">
+                        <span class="level-start">
+                            <span class="level-item">工具教程</span>
+                        </span>
+        <span class="level-end">
+                            <span class="level-item tag">8</span>
+                        </span>
+    </a>
+    <ul class="mr-0">
+        <li>
+            <a class="level is-mobile is-marginless" href="/static/public/categories/工具教程/主题工具">
+                                <span class="level-start">
+                                    <span class="level-item">主题工具</span>
+                                </span>
+                <span class="level-end">
+                                    <span class="level-item tag">7</span>
+                                </span>
+            </a>
+        </li>
+        <li><a class="level is-mobile is-marginless"
+               href="../static/public/categories/工具教程/博客统计插件"><span
+                class="level-start">
+                            <span
+                                    class="level-item">博客统计插件</span></span><span
+                class="level-end"><span
+                class="level-item tag">1</span></span></a>
+        </li>
+    </ul>
+</li>
+
+
+<div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen">
+    <div class="card">
+        <div class="card-content">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    {% if code == 0 %}
+                        <li><a href="/static/public/tags">标签</a></li>
+                        <li class="is-active"><a href="#" aria-current="page">{{ name }}</a></li>
+                    {% else %}
+                        <li><a href="/static/public/tags">分类</a></li>
+                        <li class="is-active"><a href="#" aria-current="page">{{ name }}</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    {# 引入获取文章html #}
+    {% include 'blog_html/get_article.html' %}
+</div>

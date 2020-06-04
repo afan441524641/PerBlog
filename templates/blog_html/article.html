@@ -1,0 +1,67 @@
+<!-- 文章-->
+{#<div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen" id="atd" v-cloak>#}
+<div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen">
+    <div class="card widget">
+        <div class="card-content">
+            <h3 class="menu-label">热门推荐</h3>
+            <span id="index_hot_div">
+                <a href="/" class="item level3">我就是个摆设,别点我 🔥1632</a>&nbsp;&nbsp;
+                <a href="/" class="item level3">我就是个摆设,别点我 🔥1738</a>&nbsp;&nbsp;
+                <a href="/" class="item level0">我就是个摆设,别点我 🔥1832</a>&nbsp;&nbsp;
+                <a href="/" class="item level2">我就是个摆设,别点我 🔥1248</a>&nbsp;&nbsp;
+                <a href="/" class="item level1">我就是个摆设,别点我 🔥1182</a>&nbsp;&nbsp;
+{#                <a href="/" class="item level3">我就是个摆设,不要点我 🔥18382</a>&nbsp;&nbsp;#}
+{#                <a href="/" class="item level3">我就是个摆设,不要点我 🔥18382</a>&nbsp;&nbsp;#}
+{#                <a href="/" class="item level0">我就是个摆设,不要点我 🔥18382</a>&nbsp;&nbsp;#}
+{#                <a href="/" class="item level2">我就是个摆设,不要点我 🔥18382</a>&nbsp;&nbsp;#}
+{#                <a href="/" class="item level1">我就是个摆设,不要点我 🔥18382</a>&nbsp;&nbsp;#}
+            </span>
+        </div>
+    </div>
+    {% for con in data_list %}
+        {{ con.content | safe | truncatewords_html:'20' }}
+    {% endfor %}
+    {% include 'blog_html/get_article.html' %}
+
+    <!--  页数-->
+    <nav class="pagination is-centered mt-4" role="navigation" aria-label="pagination">
+        {% if page_num >= 2 %}
+            <div class="pagination-previous">
+                <a href="{% url 'page' page_num|add:-1 %}">上一页</a>
+            </div>
+        {% else %}
+            <div class="pagination-previous is-invisible is-hidden-mobile">
+                <a href="/">上一页</a>
+            </div>
+        {% endif %}
+        {% if page_num < total_page|length %}
+            <div class="pagination-next">
+                {# url 反向解析，有带参数， 则后面多补个参数#}
+                {# 内置过滤器：https://docs.djangoproject.com/en/dev/ref/templates/builtins/#built-in-filter-reference#}
+                <a href="{% url 'page' page_num|add:1 %}">下一页</a>
+            </div>
+        {% else %}
+            <div class="pagination-next is-invisible is-hidden-mobile">
+                <a href="/">上一页</a>
+            </div>
+        {% endif %}
+        <ul class="pagination-list is-hidden-mobile">
+            {% for foo in total_page %}
+                {% if  forloop.counter  == 1 %}
+                    <li>
+                        {#  pagination-link is-current 选中状态 #}
+                        <a id="is-a{{ forloop.counter }}" class="pagination-link" href="/">{{ forloop.counter }}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a id="is-a{{ forloop.counter }}" class="pagination-link"
+                           href="{% url 'page' forloop.counter %}">{{ forloop.counter }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
+</div>
+{#<div class="pagenation">#}
+{#    <div id="pagination" class="page"></div>#}
+{#</div>#}

@@ -1,0 +1,160 @@
+<!--页脚-->
+{% load static %}
+<footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start">
+                <a class="footer-logo is-block mb-2" href="/">
+                    <img src="/static/img/logo1.png" alt="Blog" height="28"></a>
+                <p class="size-small">
+                    <span>&copy; 2020 Admin</span>  Powered by
+                    <a href="/" target="_blank">Blog</a> &amp;
+                    {#                    <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>,Modify by#}
+                    <a href="https://github.com/afan441524641" target="_blank">Afan</a>
+                    <br>
+                    <span>©<a href="http://www.beian.miit.gov.cn/" target="_blank">川ICP备88888888号-8</a>
+                            <br>
+                        </span>
+                    <span>©版权说明：[本网站所有内容如有侵权] 请致信邮箱
+                            <a href="/" target="_blank">441524641@qq.com</a>
+                            <br/>
+                        </span>
+                    <span>
+                        <span id="statistic-times">loading...</span>
+                            <script>
+                                function createTime(time) {
+                                    var n = new Date(time);
+                                    now.setTime(now.getTime() + 250),
+                                        days = (now - n) / 1e3 / 60 / 60 / 24,
+                                        dnum = Math.floor(days),
+                                        hours = (now - n) / 1e3 / 60 / 60 - 24 * dnum,
+                                        hnum = Math.floor(hours),
+                                    1 == String(hnum).length && (hnum = "0" + hnum),
+                                        minutes = (now - n) / 1e3 / 60 - 1440 * dnum - 60 * hnum,
+                                        mnum = Math.floor(minutes),
+                                    1 == String(mnum).length && (mnum = "0" + mnum),
+                                        seconds = (now - n) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,
+                                        snum = Math.round(seconds),
+                                    1 == String(snum).length && (snum = "0" + snum),
+                                        document.getElementById("statistic-times").innerHTML = "❤️本站自 <strong>" + time.split(" ")[0].replace(/\//g, ".") + "</strong> 已运行 <strong>" + dnum + "</strong> 天 <strong>" + hnum + "</strong> 小时 <strong>" + mnum + "</strong> 分 <strong>" + snum + "</strong> 秒！❤️";
+                                }
+
+                                var now = new Date();
+                                setInterval("createTime('2020/5/4 00:00:00')", 250, "");
+                            </script>
+                            <br>
+                    </span>
+                </p>
+                <div class="size-small">
+                        <span>
+                            <strong>
+                                <!--                            不蒜子站点统计 http://ibruce.info/2015/04/04/busuanzi/-->
+                                <span id="busuanzi_container_site_pv">❤️感谢<span id="busuanzi_value_site_pv"></span>小伙伴的光临</span>
+                                <!--                            <span id="busuanzi_value_site_uv">99+</span>-->
+                            </strong>
+                            <!--                                小伙伴的-->
+                            <!--                        <strong>-->
+                            <!--                            <span id="busuanzi_value_site_pv">99+</span>-->
+                            <!--                        </strong> 次光临！❤️-->
+                        </span>
+                </div>
+            </div>
+            <div class="level-end">
+                <div class="field has-addons">
+                    <p class="control">
+                        <a class="button is-transparent is-large" target="_blank" rel="noopener"
+                           title="Creative Commons" href="/">
+                            <i class="fab fa-creative-commons"></i>
+                        </a>
+                    </p>
+                    <p class="control">
+                        <a class="button is-transparent is-large" target="_blank" rel="noopener" title="友链界面(暂未开放)"
+                           href="/">
+                            <i class="fab fa-creative-commons-by"></i>
+                        </a>
+                    </p>
+                    <p class="control">
+                        <a class="button is-transparent is-large" target="_blank" rel="noopener"
+                           title="Download on GitHub" href="https://github.com/afan441524641">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </p>
+                </div>
+                <div class="sideMusic">
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+                    <script src="{% static 'js/APlayer.min.js' %}"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+                    <meting-js style="width: auto;height: 2000px;" server="netease" type="playlist" id="2364053447"
+                               theme="#2980b9" loop="all" autoplay="false" order="list" storageName="aplayer-setting"
+                               lrctype="0" list-max-height="400px" fixed="true">
+                    </meting-js>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+{# 复制黏贴的插件 #}
+<script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script>
+<script src="{% static 'js/animation.js' %}"></script>
+<a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a>
+<script src="{% static 'js/back-to-top.js' %}" defer></script>
+<script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.12/js/lightgallery-all.min.js" defer></script>
+<script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="{% static 'js/toc.js' %}" defer></script>
+<script src="{% static 'js/main.js' %}" defer></script>
+
+{# 导入ajax请求数据的js文件 #}
+<script type="text/javascript" src="{% static 'js/left-site.js' %}"></script>
+{#<script>#}
+{#    $.getScript('/static/js/comment-issue-data.js', function () {#}
+{#        loadIssueData('46a9f3481b46ea0129d8', '79c7c9cb847e141757d7864453bcbf89f0655b24', 'removeif', 'blog_comment', false);#}
+{#    })#}
+{#</script>#}
+<link rel="stylesheet" href="/static/css/insight.css">
+<div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text"
+                                                    placeholder="想要查找什么...(待完善)"><span
+                class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span></div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+{# 页数选中 #}
+<script>
+    {#    导航栏选中 #}
+    console.log(location.pathname);
+    if (location.pathname === '/articles/category/') {
+        let a_ = document.getElementById('navbar-item-1');
+        a_.setAttribute('class', 'navbar-item is-active');
+    } else if (location.pathname === '/') {
+        let a_ = document.getElementById('navbar-item-0');
+        a_.setAttribute('class', 'navbar-item is-active');
+    } else if (location.pathname === '/articles/tags/') {
+        let a_ = document.getElementById('navbar-item-2');
+        a_.setAttribute('class', 'navbar-item is-active');
+    }
+    let page_tag = document.getElementById('is-a{{ page_num }}');
+    page_tag.setAttribute('class', 'pagination-link is-current');
+</script>
+<script type="text/javascript">
+    function getYiyan() {
+        $.getJSON("https://v1.hitokoto.cn/", function (data) {
+            if (data) {
+                $('#hitokoto').html("");
+                $('#hitokoto').append("<strong style='color: #3273dc;'>" + data.hitokoto + "</strong>" +
+                    "<p>" + "来源《" + data.from + "》</p><p>提供者-" + data.creator + "</p>");
+            }
+        });
+    }
+
+    $(function () {
+        getYiyan();
+        $('#hitokoto').click(function () {
+            getYiyan();
+        })
+    });
+</script>
+<script src="{% static 'js/insight.js' %}" defer></script>
