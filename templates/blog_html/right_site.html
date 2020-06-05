@@ -4,22 +4,22 @@
     <div class="card-content">
         <h3 class="menu-label">最新文章</h3>
         <article v-for="obj in article_data" class="media" v-cloak>
-            <a class="media-left" href="/">
+            <a class="media-left" :href="'/articles/details/'+obj.id+''">
                 <p class="image is-64x64">
-                    <img class="thumbnail" :src="'/media/'+obj.img_url+''" :alt= "''+obj.title+''" ></p>
+                    <img class="thumbnail" :src="'/media/'+obj.img_url+''" :alt="''+obj.title+''"></p>
             </a>
             <div class="media-content size-small">
                 <p>
                     <time :dateTime="''+obj.create_time+''">[[ obj.create_time ]]</time>
                 </p>
                 <p class="title is-6">
-                    <a class="link-muted"
-                       href="/">[[ obj.title ]]</a>
+                    <a class="link-muted" :href="'/articles/details/'+obj.id+''" v-cloak>[[ obj.title ]]</a>
                 </p>
                 <p class="is-uppercase">
                     <i class="fas fa-folder-open has-text-grey"> </i>
-                    <a class="link-muted" href="/">[[ obj.category ]]</a> /
-                    <a class="link-muted" href="/">[[ obj.tag ]]</a>
+                    <a class="link-muted" :href="'/articles/cate_tags/category/'+obj.category_id+'/page/1/'">[[
+                        obj.category ]]</a> /
+                    <a class="link-muted" :href="'/articles/cate_tags/tags/'+obj.tag_id+'/page/1/'">[[ obj.tag ]]</a>
                 </p>
             </div>
         </article>

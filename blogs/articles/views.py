@@ -73,11 +73,14 @@ class GetNewArticleView(View):
         # print(new_article)
         # 列表推导式生成文章列表,不包括内容
         article_list = [{
+            'id': i.id,
             'title': i.title,
             'create_time': (i.create_time + datetime.timedelta(hours=8)).strftime('%Y-%m-%d'),
             'category': i.category.name,
             'tag': i.tag.name,
-            "img_url": i.default_images.default_image.name
+            "img_url": i.default_images.default_image.name,
+            'category_id': i.category_id,
+            'tag_id': i.tag_id
         } for i in new_article]
         # print(article_list)
         return http.JsonResponse({
